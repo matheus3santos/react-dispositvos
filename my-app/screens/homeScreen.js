@@ -1,10 +1,11 @@
-import React from "react";
+import React, { Component } from "react";
 import { Input, Icon, Avatar } from '@rneui/themed';
 import { StyleSheet, Text, View, Button, TextInput } from "react-native";
 
 
 
-export default class Home extends React.component {
+
+export default class Home extends React.Component {
 
     render() {
         return (

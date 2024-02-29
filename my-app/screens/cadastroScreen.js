@@ -5,7 +5,7 @@ import { View, Image, Button } from "react-native";
 
 
 
-export default class Home extends React.component {
+export default class Cadastro extends React.Component {
 
     render() {
         return (

@@ -7,7 +7,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import HomeScreen from './screens/homeScreen'
 import CadastroScreen from './screens/cadastroScreen'
-import cadastroContato from './screens/cadastroContato'
+import CadastroContato from './screens/cadastroContato'
 import ContatoScreen from "./screens/contatoScreen";
 import EditScreen from "./screens/editScreen";
 import { Header } from "react-native-elements";

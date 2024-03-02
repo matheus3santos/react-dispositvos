@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, Button, Box, Input, Icon, Stack } from "react-n
 import { Avatar, ListItem } from "react-native-elements";
 
 
-const cadastroContato = ({ navigation }) => {
+const CadastroContato = ({ navigation }) => {
         return (
             <View style={[styles.container, {
                 flexDirection: "column"
@@ -50,4 +50,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default cadastroContato;
+export default CadastroContato;

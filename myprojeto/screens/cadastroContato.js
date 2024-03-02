@@ -1,7 +1,8 @@
 import { Center } from "@gluestack-ui/themed-native-base";
 import React from "react";
-import { StyleSheet, Text, View, Button, Box, Input, Icon, Stack } from "react-native";
+import { StyleSheet, Text, View, Button, Box, Icon, Stack } from "react-native";
 import { Avatar, ListItem } from "react-native-elements";
+import { Input } from '@rneui/themed';
 
 
 const CadastroContato = ({ navigation }) => {
@@ -19,11 +20,11 @@ const CadastroContato = ({ navigation }) => {
 
                 <View align='center' spacing={5} style={[styles.input]}>
                     <text h1 >Nome</text>
-                    <input placeholder="NOME" />
+                    <Input placeholder="NOME" />
                     <text h1>Email</text>
-                    <input placeholder="EMAIL" />
+                    <Input placeholder="EMAIL" />
                     <text h1 >Telefone</text>
-                    <input placeholder="( )00000-0000"/>
+                    <Input placeholder="( )00000-0000"/>
                 </View>
                 <View style={[styles.input]}>
                     <Button title="Salvar" style={{ flex: 1, backgroundColor: "green" }} />

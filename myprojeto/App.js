@@ -21,10 +21,10 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <AppStack.Navigator initialRouteName="EditScreen">
+      <AppStack.Navigator initialRouteName="Home">
         <AppStack.Screen name="Home" component={HomeScreen} options={{headerShown:false}} />
         <AppStack.Screen name="Cadastro" component={CadastroScreen} options={{headerShown:false}}/>
-        <AppStack.Screen name="CadastroContato" component={cadastroContato} options={{headerShown:false}}/>
+        <AppStack.Screen name="CadastroContato" component={CadastroContato} options={{headerShown:false}}/>
         <AppStack.Screen name="Contatos" component={ContatoScreen} options={{headerShown:false}}/>
         <AppStack.Screen name="Edition" component={EditScreen} options={{headerShown:false}}/>
       </AppStack.Navigator>

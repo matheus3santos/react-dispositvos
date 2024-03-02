@@ -1,7 +1,9 @@
 import { Center } from "@gluestack-ui/themed-native-base";
 import React from "react";
-import { StyleSheet, Text, View, Button, Box, Input, Icon, Stack } from "react-native";
+import { StyleSheet, Text, View, Button, Box, Icon, Stack } from "react-native";
 import { Avatar, ListItem } from "react-native-elements";
+import { Input } from '@rneui/themed';
+
 
 
 const EditScreen = ({ navigation }) => {
@@ -18,11 +20,11 @@ const EditScreen = ({ navigation }) => {
 
                 <View align='center' spacing={5} style={[styles.input]}>
                     <text h1 >Nome</text>
-                    <input placeholder="NOME" />
+                    <Input placeholder="NOME" />
                     <text h1>Email</text>
-                    <input placeholder="EMAIL" />
+                    <Input placeholder="EMAIL" />
                     <text h1 >Telefone</text>
-                    <input placeholder="Telefone" />
+                    <Input placeholder="Telefone" />
                 </View>
 
                 <View style={[styles.input]}>

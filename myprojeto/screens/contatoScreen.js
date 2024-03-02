@@ -1,7 +1,7 @@
 import { Center } from "@gluestack-ui/themed-native-base";
 import React from "react";
 
-import { StyleSheet, Text, View, Button, Box, Input, Icon, Stack } from "react-native";
+import { StyleSheet, Text, View, Button, Box, Icon, Stack } from "react-native";
 import { Avatar, ListItem, Header } from "react-native-elements";
 
 
@@ -18,12 +18,13 @@ const ContatoScreen = ({ navigation }) => {
 
             <View>
                 <Header
-                    centerComponent={{ text: 'Contatos', style: { color: '#fff' }, }}
+                    centerComponent={
+                        <Text  style={{ color: '#fff',fontSize:20 }}>Lista de Contatos</Text>
+                    }
                     rightComponent={
                     <Button
-                    title="Adicionar"
+                    title="Add Contato"
                     onPress={() => navigation.navigate('CadastroContato')}
-                    type="clear"
                     titleStyle={{ color: '#fff' }}
                     
                     />}
@@ -42,7 +43,7 @@ const ContatoScreen = ({ navigation }) => {
             <View style={[styles.input]}>
 
                 <ListItem bottomDivider
-                    onPress={() => navigation.navigate('EditScreen')}>
+                    onPress={() => navigation.navigate('Edition')}>
                     <Avatar
                         rounded
                         source={{ uri: "https://randomuser.me/api/portraits/men/36.jpg" }}

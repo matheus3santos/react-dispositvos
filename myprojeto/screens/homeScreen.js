@@ -1,6 +1,8 @@
 import React from "react";
-import { StyleSheet, Text, View, Button, Box, Input, Icon, Stack } from "react-native";
+import { StyleSheet, Text, View, Box, Icon, Stack } from "react-native";
 import { Avatar, ListItem } from "react-native-elements";
+import { Input, Button } from '@rneui/themed';
+import { color } from "react-native-elements/dist/helpers";
 
 
 
@@ -20,23 +22,24 @@ const CadastroScreen = ({ navigation }) => {
 
             <View align='center' spacing={5} style={[styles.input]}>
                 <View style={[styles.input]}>
-                    <input placeholder="EMAIL" />
+                    <Input placeholder="EMAIL" />
                 </View>
                 <View style={[styles.input]}>
-                    <input placeholder="SENHA" secureTextEntry={true} />
+                    <Input placeholder="SENHA" secureTextEntry={true} />
                 </View>
 
             </View>
             <View align='center' spacing={5} style={[styles.input]}>
                 <View style={[styles.input]}>
                     <Button
-                        title="Logar"
+                        title="Login"
                         style={{ flex: 1, backgroundColor: "green" }}
                         onPress={() => navigation.navigate('Contatos')
                         } />
                 </View>
                 <View style={[styles.input]}>
                     <Button
+                        buttonStyle={{ backgroundColor: 'rgba(214, 61, 57, 1)' }}
                         title="Cadastrar-se"
                         onPress={() => navigation.navigate('Cadastro')
                         } />
@@ -56,6 +59,7 @@ const styles = StyleSheet.create({
     },
     input: {
         paddingBottom: 20,
+
     },
     img: {
         padding: 20,

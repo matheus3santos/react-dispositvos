@@ -5,7 +5,14 @@ import { StyleSheet, Text, View, Button, Box, Icon, Stack } from "react-native";
 import { Avatar, ListItem, Header } from "react-native-elements";
 
 
-
+function listarContatos(){
+    axios.get('')
+    .then(function(response){
+        console.log("teste")
+    }).catch(function(error){
+        console.log(error)
+    })
+}
 
 
 const ContatoScreen = ({ navigation }) => {
@@ -23,9 +30,10 @@ const ContatoScreen = ({ navigation }) => {
                     }
                     rightComponent={
                     <Button
-                    title="Add Contato"
+                    title="+"
                     onPress={() => navigation.navigate('CadastroContato')}
-                    titleStyle={{ color: '#fff' }}
+                    buttonStyle={{backgroundColor:'rgba(214, 61, 57, 1)',bordeRadius:'5'}}
+                    titleStyle={{ color: 'red' }}
                     
                     />}
                 />

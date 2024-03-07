@@ -20,13 +20,13 @@ const CadastroScreen = ({ navigation }) => {
                 </View>
 
                 <View align='center' spacing={5} style={[styles.input]}>
-                    <text h1 >Nome</text>
+                    <Text h1 >Nome</Text>
                     <Input placeholder="NOME" />
-                    <text h1 >CPF</text>
+                    <Text h1 >CPF</Text>
                     <Input placeholder="000.000.000-00" />
-                    <text h1>Email</text>
+                    <Text h1>Email</Text>
                     <Input placeholder="EMAIL" />
-                    <text h1 >Senha</text>
+                    <Text h1 >Senha</Text>
                     <Input placeholder="SENHA" secureTextEntry={true} />
                 </View>
 

@@ -6,6 +6,20 @@ import { Input } from '@rneui/themed';
 
 
 
+function alterarDados(){
+
+    axios.put(
+    {
+    nome: getNome,
+    telefone: getEmail,
+    cpf: getTelefone
+    }).try { console.log('certo')
+        then
+    } catch (error) {
+    console.log('erro')}
+}
+
+
 const EditScreen = ({ navigation }) => {
         return (
             <View style={[styles.container, {
@@ -19,11 +33,11 @@ const EditScreen = ({ navigation }) => {
                 </View>
 
                 <View align='center' spacing={5} style={[styles.input]}>
-                    <text h1 >Nome</text>
+                    <Text h1 >Nome</Text>
                     <Input placeholder="NOME" />
-                    <text h1>Email</text>
+                    <Text h1>Email</Text>
                     <Input placeholder="EMAIL" />
-                    <text h1 >Telefone</text>
+                    <Text h1 >Telefone</Text>
                     <Input placeholder="Telefone" />
                 </View>
 

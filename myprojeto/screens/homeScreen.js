@@ -30,10 +30,11 @@ const CadastroScreen = ({ navigation }) => {
 
             </View>
             <View align='center' spacing={5} style={[styles.input]}>
+
                 <View style={[styles.input]}>
                     <Button
                         title="Login"
-                        style={{ flex: 1, backgroundColor: "green" }}
+                        style={{ backgroundColor: 'green' }}
                         onPress={() => navigation.navigate('Contatos')
                         } />
                 </View>
@@ -44,6 +45,8 @@ const CadastroScreen = ({ navigation }) => {
                         onPress={() => navigation.navigate('Cadastro')
                         } />
                 </View>
+
+                
 
             </View>
         </View>

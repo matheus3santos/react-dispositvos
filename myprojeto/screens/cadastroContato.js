@@ -5,6 +5,24 @@ import { Avatar, ListItem } from "react-native-elements";
 import { Input } from '@rneui/themed';
 
 
+
+function inserirDados(){
+
+    axios.post('http://localhost:3000/contatos'
+    , {
+    
+    nome: getNome,
+    numero: getNumero,
+    email: getEmail
+    }).then(function (response) {
+    console.log(response);
+    }).catch(function (error) {
+    console.log(error);
+    
+    });
+    
+    }
+
 const CadastroContato = ({ navigation }) => {
         return (
             <View style={[styles.container, {

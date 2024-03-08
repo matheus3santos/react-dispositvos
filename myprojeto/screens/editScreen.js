@@ -5,19 +5,18 @@ import { Avatar, ListItem } from "react-native-elements";
 import { Input } from '@rneui/themed';
 
 
+function excluirDados(){
 
-function alterarDados(){
-
-    axios.put(
-    {
-    nome: getNome,
-    telefone: getEmail,
-    cpf: getTelefone
-    }).try { console.log('certo')
-        then
-    } catch (error) {
-    console.log('erro')}
-}
+    axios.delete('http://professornilson.com/testeservico/clientes/'+getId)
+    
+    .then(function (response) {
+    console.log(response);
+    }).catch(function (error) {
+    console.log(error);
+    
+    });
+    
+    }
 
 
 const EditScreen = ({ navigation }) => {
@@ -45,7 +44,8 @@ const EditScreen = ({ navigation }) => {
                     <Button title="Alterar" style={{ flex: 1, backgroundColor: "green" }} />
                 </View>
                 <View style={[styles.input]}>
-                    <Button title="Excluir" style={{ flex: 1, backgroundColor: "green" }} />
+                    <Button title="Excluir" style={{ flex: 1, backgroundColor: "green" }}
+                    onPress={() => excluirDados()} />
                 </View>
 
             </View>

@@ -6,22 +6,20 @@ import { Input } from '@rneui/themed';
 
 
 
-function inserirDados(){
+const inserirDados = ({ route, navigation }) => {
 
-    axios.post('http://localhost:3000/contatos'
-    , {
-    
-    nome: getNome,
-    numero: getNumero,
-    email: getEmail
-    }).then(function (response) {
-    console.log(response);
-    }).catch(function (error) {
-    console.log(error);
-    
-    });
-    
-    }
+    const [getData, setData] = useState([]);
+
+    useEffect(() => {
+        async function resgatarDados() {
+            const result = await axios(
+                'http://localhost:5000/contatos',
+            );
+            setData(result.data);
+        }
+        resgatarDados();
+
+    })
 
 const CadastroContato = ({ navigation }) => {
         return (

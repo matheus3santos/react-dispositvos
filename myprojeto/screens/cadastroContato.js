@@ -20,6 +20,7 @@ const inserirDados = ({ route, navigation }) => {
         resgatarDados();
 
     })
+}
 
 const CadastroContato = ({ navigation }) => {
         return (

@@ -14,7 +14,7 @@ const ContatoScreen = ({ route, navigation }) => {
     useEffect(() => {
         async function resgatarDados() {
             const result = await axios(
-                'http://localhost:3000/contatos',
+                'http://localhost:5000/contatos',
             );
             setData(result.data);
         }
@@ -47,7 +47,7 @@ const ContatoScreen = ({ route, navigation }) => {
             </View>
 
             <View style={[styles.input, {
-                align: "center"
+                alignItems: "center"
             }]}>
 
             </View>
@@ -55,20 +55,22 @@ const ContatoScreen = ({ route, navigation }) => {
 
 
                 {
-                    getData.map((linha, 1) => (
+                    getData.map((contato, i) => (
 
-                <ListItem
-                    key={i}
-                    title={linha.nome}
-                    Subtitle={linha.numero}
-                    bottomDivider
-                    onPress={() => navigation.navigate('Edition')}>
-
-                </ListItem>
-
+                        <ListItem
+                            key={i}
+                            bottomDivider
+                            onPress={() => navigation.navigate('Edition')}>
+                            <ListItem.Content>
+                                <ListItem.Title>{contato.nome}</ListItem.Title>
+                                <ListItem.Subtitle>{contato.numero}</ListItem.Subtitle>
+                            </ListItem.Content>
+                            <ListItem.Chevron />
+                        </ListItem>
 
                     ))
                 }
+
             </View>
         </View>
     )

@@ -14,63 +14,68 @@ const CadastroContato = ({ navigation }) => {
     const [getEmail, setEmail] = useState('');
     const [getNumero, setNumero] = useState('');
 
-     async function inserirDados() {
-         axios.post('http://localhost:8000/contatos', {
-             nome: getNome,
-             numero: getNumero,
-             email: getEmail,
-         })
-             .then(function (response) {
-                 setNome('');
-                 setNumero('');
-                 setEmail('');
-                 console.log(response)
-                 showMessage({ // Supondo que showMessage é importado de algum lugar
-                     message: "Registro Cadastrado com sucesso",
-                     type: "success",
-                 });
-             })
-             .catch(function (error) {
-                 console.log(error);
-             });
-     }
+    async function inserirDados() {
+        axios.post('http://localhost:8000/contatos', {
+            nome: getNome,
+            numero: getNumero,
+            email: getEmail,
+        })
+            .then(function (response) {
+                setNome('');
+                setNumero('');
+                setEmail('');
+                console.log(response)
+                showMessage({ // Supondo que showMessage é importado de algum lugar
+                    message: "Registro Cadastrado com sucesso",
+                    type: "success",
+                });
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
 
     return (
         <View style={styles.container}>
-            <View style={styles.input}>
-                <View align='center' spacing={5} style={[styles.input]}>
 
-                    <Text h4 >Nome</Text>
-                    <TextInput
-                        placeholder="NOME"
-                        onChangeText={text => setNome(text)}
-                        value={getNome}
+            <View align='center' spacing={5}>
 
-                    />
-                    <Text h4>Email</Text>
-                    <TextInput
-                        placeholder="EMAIL"
-                        onChangeText={text => setEmail(text)}
-                        value={getEmail}
-                    />
-                    <Text h4>Telefone</Text>
-                    <TextInput
-                        placeholder="( )00000-0000"
-                        onChangeText={text => setNumero(text)}
-                        value={getNumero}
+                <Text h4 >Nome</Text>
+                <TextInput
+                    style={[styles.input]}
+                    placeholder="NOME"
+                    onChangeText={text => setNome(text)}
+                    value={getNome}
 
-                    />
-                </View>
-                <View style={styles.input}>
-                    <Button
-                        title="Salvar"
-                        style={{ flex: 1, backgroundColor: "green" }}
-                        onPress={() => {inserirDados(); 
-                            navigation.navigate('Contatos')}}
+                />
+                <Text h4>Email</Text>
+                <TextInput
+                    style={styles.input}
+                    placeholder="EMAIL"
+                    onChangeText={text => setEmail(text)}
+                    value={getEmail}
+                />
+                <Text h4>Telefone</Text>
+                <TextInput
+                    style={[styles.input]}
+                    placeholder="( )00000-0000"
+                    onChangeText={text => setNumero(text)}
+                    value={getNumero}
 
-                    />
-                </View>
+                />
             </View>
+            <View>
+                <Button
+                    title="Salvar"
+                    style={{ flex: 1,paddingTop: 20}}
+                    onPress={() => {
+                        inserirDados();
+                        navigation.navigate('Contatos')
+                    }}
+
+                />
+            </View>
+
 
 
         </View>
@@ -88,6 +93,8 @@ const styles = StyleSheet.create({
         paddingBottom: 20,
         align: "center",
         borderColor: 'black',
+        borderWidth: 1,
+        borderRadius: 5,
     },
     img: {
         padding: 20,

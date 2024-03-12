@@ -1,65 +1,113 @@
-import { Center } from "@gluestack-ui/themed-native-base";
-import React from "react";
-import { StyleSheet, Text, View, Button, Box, Icon, Stack } from "react-native";
-import { Avatar, ListItem } from "react-native-elements";
-import { Input } from '@rneui/themed';
+import React, { useEffect, useState } from "react";
+import { StyleSheet, View, TextInput } from "react-native";
+import { Button, Text } from '@rneui/themed';
+import axios from 'axios';
 
 
-function excluirDados(){
 
-    axios.delete('http://professornilson.com/testeservico/clientes/'+getId)
+
+
+
+const EditScreen = ({ route,navigation }) => {
+
+    const getId = route.params.id;
+    const [getNome, setNome] = useState('');
+    const [getEmail, setEmail] = useState('');
+    const [getNumero, setNumero] = useState('')
     
-    .then(function (response) {
-    console.log(response);
-    }).catch(function (error) {
-    console.log(error);
-    
-    });
-    
-    }
+    const atualizarDados = async () => {
+        try {
+            const response = await axios.put(`http://localhost:8000/contatos/${getId}`, {
+                nome: getNome,
+                numero: getNumero,
+                email: getEmail,
+            });
+            console.log(response.data);
+            alert("Registro atualizado com sucesso");
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    const excluirDados = async () => {
+        try {
+            const response = await axios.delete(`http://localhost:8000/contatos/${getId}`);
+            console.log(response.data);
+            alert("Registro excluído com sucesso");
+            navigation.navigate('Contatos');
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    useEffect(() => {
+        // Extrair dados do parâmetro de rota
+        const { nome, numero, email } = route.params;
+        // Definir os valores iniciais dos campos de entrada
+        setNome(nome);
+        setNumero(numero);
+        setEmail(email);
+    }, []);
 
 
-const EditScreen = ({ navigation }) => {
-        return (
-            <View style={[styles.container, {
-                flexDirection: "column"
-            }]}>
 
-                <View style={[styles.input, {
-                    align: "center"
-                }]}>
-                    
-                </View>
 
-                <View align='center' spacing={5} style={[styles.input]}>
-                    <Text h1 >Nome</Text>
-                    <Input placeholder="NOME" />
-                    <Text h1>Email</Text>
-                    <Input placeholder="EMAIL" />
-                    <Text h1 >Telefone</Text>
-                    <Input placeholder="Telefone" />
-                </View>
+    return (
+        <View style={styles.container}>
 
-                <View style={[styles.input]}>
-                    <Button title="Alterar" style={{ flex: 1, backgroundColor: "green" }} />
-                </View>
-                <View style={[styles.input]}>
-                    <Button title="Excluir" style={{ flex: 1, backgroundColor: "green" }}
-                    onPress={() => excluirDados()} />
-                </View>
+            <View style={styles.input}>
 
             </View>
-        )
-    }
+
+            <View align='center' spacing={5} style={[styles.input]}>
+                <Text h1 >Nome</Text>
+                <TextInput placeholder="NOME"
+                    onChangeText={text => setNome(text)}
+                    value={getNome}
+                />
+                <Text h1>Email</Text>
+                <TextInput placeholder="EMAIL"
+                    onChangeText={text => setEmail(text)}
+                    value={getEmail}
+                />
+                <Text h1 >Telefone</Text>
+                <TextInput placeholder="Telefone"
+                    onChangeText={text => setNumero(text)}
+                    value={getNumero}
+                />
+            </View>
+
+            <View style={[styles.input]}>
+                <Button title="Alterar" style={{ flex: 1, backgroundColor: "green" }}
+                onPress={() => {
+                    atualizarDados();
+                    navigation.navigate('Contatos')}}
+
+                />
+            </View>
+            <View style={[styles.input]}>
+                <Button title="Excluir" style={{ flex: 1, backgroundColor: "green" }}
+                    onPress={() => {
+                        excluirDados();
+                        navigation.navigate('Contatos')
+                    }} />
+
+            </View>
+
+        </View>
+    )
+}
 
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         padding: 40,
+        flexDirection: "column",
     },
     input: {
         paddingBottom: 20,
+        align: "center",
     },
     img: {
         padding: 20,

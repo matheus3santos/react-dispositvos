@@ -1,8 +1,8 @@
-import { Center } from "@gluestack-ui/themed-native-base";
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
-import { StyleSheet, Text, View, Button, Box, Icon, Stack } from "react-native";
-import { Avatar, ListItem, Header } from "react-native-elements";
+import { StyleSheet, Text, View, Button } from "react-native";
+import { ListItem, Header } from "react-native-elements";
+import { TouchableOpacity } from "react-native";
 
 
 
@@ -13,14 +13,15 @@ const ContatoScreen = ({ route, navigation }) => {
 
     useEffect(() => {
         async function resgatarDados() {
-            const result = await axios(
-                'http://localhost:8000/contatos',
-            );
+            const result = await axios('http://localhost:8000/contatos');
             setData(result.data);
         }
         resgatarDados();
+    }, []); // Lista de dependências vazia para executar apenas uma vez
 
-    })
+    const navigateToEditionScreen = (id) => {
+        navigation.navigate('Edition', { id: id });
+    };
 
     return (
 
@@ -51,26 +52,19 @@ const ContatoScreen = ({ route, navigation }) => {
             }]}>
 
             </View>
-            <View style={[styles.input]}>
-
-
-                {
-                    getData.map((contato, i) => (
-
-                        <ListItem
-                            key={i}
-                            bottomDivider
-                            onPress={() => navigation.navigate('Edition')}>
-                            <ListItem.Content>
-                                <ListItem.Title>{contato.nome}</ListItem.Title>
-                                <ListItem.Subtitle>{contato.numero}</ListItem.Subtitle>
-                            </ListItem.Content>
-                            <ListItem.Chevron />
-                        </ListItem>
-
+            <View style={styles.input}>
+                {getData.map((contato) => (
+                        <TouchableOpacity key={contato.id} onPress={() => navigateToEditionScreen(contato.id)}>
+                            <ListItem bottomDivider>
+                                <ListItem.Content>
+                                    <ListItem.Title>{contato.nome}</ListItem.Title>
+                                    <ListItem.Subtitle>{contato.numero}</ListItem.Subtitle>
+                                </ListItem.Content>
+                                <ListItem.Chevron />
+                            </ListItem>
+                        </TouchableOpacity>
                     ))
                 }
-
             </View>
         </View>
     )

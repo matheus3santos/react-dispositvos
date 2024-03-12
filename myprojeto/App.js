@@ -21,7 +21,7 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <AppStack.Navigator initialRouteName="Home">
+      <AppStack.Navigator initialRouteName="CadastroContato">
         <AppStack.Screen name="Home" component={HomeScreen} options={{headerShown:false}} />
         <AppStack.Screen name="Cadastro" component={CadastroScreen} options={{headerShown:false}}/>
         <AppStack.Screen name="CadastroContato" component={CadastroContato} options={{headerShown:false}}/>

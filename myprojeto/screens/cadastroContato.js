@@ -1,65 +1,93 @@
 import { Center } from "@gluestack-ui/themed-native-base";
 import React from "react";
-import { StyleSheet, Text, View, Button, Box, Icon, Stack } from "react-native";
+import { View,StyleSheet,TextInput } from "react-native";
 import { Avatar, ListItem } from "react-native-elements";
-import { Input } from '@rneui/themed';
+import { Button } from '@rneui/themed';
+import axios from 'axios';
 
 
 
-const inserirDados = ({ route, navigation }) => {
 
-    const [getData, setData] = useState([]);
 
-    useEffect(() => {
-        async function resgatarDados() {
-            const result = await axios(
-                'http://localhost:5000/contatos',
-            );
-            setData(result.data);
-        }
-        resgatarDados();
-
-    })
-}
 
 const CadastroContato = ({ navigation }) => {
-        return (
-            <View style={[styles.container, {
-                flexDirection: "column"
-            }]}>
 
-                <View style={[styles.input, {
-                    align: "center"
-                }]}>
-
-            
-                </View>
-
-                <View align='center' spacing={5} style={[styles.input]}>
-                    <Text h1 >Nome</Text>
-                    <Input placeholder="NOME" />
-                    <Text h1>Email</Text>
-                    <Input placeholder="EMAIL" />
-                    <Text h1 >Telefone</Text>
-                    <Input placeholder="( )00000-0000"/>
-                </View>
-                <View style={[styles.input]}>
-                    <Button title="Salvar" style={{ flex: 1, backgroundColor: "green" }} />
-                </View>
-               
-                
-            </View>
-        )
+    const [getNome, setNome] = useState('');
+    const [getEmail, setEmail] = useState('');
+    const [getNumero, setNumero] = useState('');
+    async function inserirDados() {
+        axios.post('http://localhost:8000/contatos', {
+            nome: getNome,
+            numero: getNumero,
+            email: getEmail,
+        })
+            .then(function (response) {
+                setNome('');
+                setNumero('');
+                setEmail('');
+                console.log(response)
+                showMessage({ // Supondo que showMessage é importado de algum lugar
+                    message: "Registro Cadastrado com sucesso",
+                    type: "success",
+                });
+                navigation.navigate('Contatos');
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
     }
+
+    return (
+        <View style={styles.container}>
+            <View style={styles.input}>
+                <View align='center' spacing={5} style={[styles.input]}>
+
+                    <Text h4 >Nome</Text>
+                    <TextInput
+                        placeholder="NOME"
+                        // onChangeText={text => setEmail(text)}
+                        // value={getEmail}
+
+                    />
+                    <Text h4>Email</Text>
+                    <TextInput
+                        placeholder="EMAIL"
+                        // onChangeText={text => setEmail(text)}
+                        // value={getEmail}
+                    />
+                    <Text h4>Telefone</Text>
+                    <TextInput
+                        placeholder="( )00000-0000"
+                        // onChangeText={text => setNumero(text)}
+                        // value={getNumero}
+
+                    />
+                </View>
+                <View style={styles.input}>
+                    <Button
+                        title="Salvar"
+                        style={{ flex: 1, backgroundColor: "green" }}
+                        
+                    />
+                </View>
+            </View>
+
+
+        </View>
+    )
+}
 
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         padding: 40,
+        flexDirection: "column",
     },
     input: {
         paddingBottom: 20,
+        align: "center",
+        borderColor: 'black',
     },
     img: {
         padding: 20,

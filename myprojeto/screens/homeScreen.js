@@ -5,6 +5,49 @@ import { Input, Button } from '@rneui/themed';
 import { color } from "react-native-elements/dist/helpers";
 
 
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+    apiKey: "AIzaSyBaycglekt0PINlf6Zv2KvcGeGRnUOtGJw",
+    authDomain: "banco-dispositivos.firebaseapp.com",
+    projectId: "banco-dispositivos",
+    storageBucket: "banco-dispositivos.appspot.com",
+    messagingSenderId: "396426127659",
+    appId: "1:396426127659:web:fa4fa0e630c308be963d6e",
+    measurementId: "G-TVFDH1LW2J"
+
+
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+
+
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+
+const auth = getAuth();
+signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        // ...
+    })
+    .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+    });
+
+
+
+
+
 
 const CadastroScreen = ({ navigation }) => {
 
@@ -46,7 +89,7 @@ const CadastroScreen = ({ navigation }) => {
                         } />
                 </View>
 
-                
+
 
             </View>
         </View>

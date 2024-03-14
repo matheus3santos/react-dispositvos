@@ -15,7 +15,7 @@ const CadastroContato = ({ navigation }) => {
     const [getNumero, setNumero] = useState('');
 
     async function inserirDados() {
-        axios.post('http://localhost:8000/contatos', {
+        axios.post('http://localhost:3000/contatos', {
             nome: getNome,
             numero: getNumero,
             email: getEmail,

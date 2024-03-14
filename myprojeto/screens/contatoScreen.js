@@ -13,7 +13,7 @@ const ContatoScreen = ({ route, navigation }) => {
 
     useEffect(() => {
         async function resgatarDados() {
-            const result = await axios('http://localhost:8000/contatos');
+            const result = await axios('http://localhost:3000/contatos');
             setData(result.data);
         }
         resgatarDados();

@@ -17,7 +17,7 @@ const EditScreen = ({ route,navigation }) => {
     
     const atualizarDados = async () => {
         try {
-            const response = await axios.put(`http://localhost:8000/contatos/${getId}`, {
+            const response = await axios.put(`http://localhost:3000/contatos/${getId}`, {
                 nome: getNome,
                 numero: getNumero,
                 email: getEmail,
@@ -31,7 +31,7 @@ const EditScreen = ({ route,navigation }) => {
 
     const excluirDados = async () => {
         try {
-            const response = await axios.delete(`http://localhost:8000/contatos/${getId}`);
+            const response = await axios.delete(`http://localhost:3000/contatos/${getId}`);
             console.log(response.data);
             alert("Registro excluído com sucesso");
             navigation.navigate('Contatos');

@@ -1,55 +1,13 @@
 import React from "react";
-import { StyleSheet, Text, View, Box, Icon, Stack } from "react-native";
-import { Avatar, ListItem } from "react-native-elements";
-import { Input, Button } from '@rneui/themed';
-import { color } from "react-native-elements/dist/helpers";
-
-
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-    apiKey: "AIzaSyBaycglekt0PINlf6Zv2KvcGeGRnUOtGJw",
-    authDomain: "banco-dispositivos.firebaseapp.com",
-    projectId: "banco-dispositivos",
-    storageBucket: "banco-dispositivos.appspot.com",
-    messagingSenderId: "396426127659",
-    appId: "1:396426127659:web:fa4fa0e630c308be963d6e",
-    measurementId: "G-TVFDH1LW2J"
-
-
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-
-
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-
-const auth = getAuth();
-signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        // ...
-    })
-    .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-    });
-
-
+import { StyleSheet, Text, View } from "react-native";
+import { Avatar, Button, Input } from "react-native-elements";
+import { useState } from "react";
 
 
 
 
 const CadastroScreen = ({ navigation }) => {
+
 
     return (
 
@@ -65,10 +23,13 @@ const CadastroScreen = ({ navigation }) => {
 
             <View align='center' spacing={5} style={[styles.input]}>
                 <View style={[styles.input]}>
-                    <Input placeholder="EMAIL" />
+                    <Text placeholder="EMAIL"
+                    />
                 </View>
                 <View style={[styles.input]}>
-                    <Input placeholder="SENHA" secureTextEntry={true} />
+                    <Text placeholder="SENHA"
+
+                        secureTextEntry={true} />
                 </View>
 
             </View>
@@ -78,8 +39,9 @@ const CadastroScreen = ({ navigation }) => {
                     <Button
                         title="Login"
                         style={{ backgroundColor: 'green' }}
-                        onPress={() => navigation.navigate('Contatos')
-                        } />
+                        onPress={() => {
+                            navigation.navigate('Contatos');
+                        }} />
                 </View>
                 <View style={[styles.input]}>
                     <Button

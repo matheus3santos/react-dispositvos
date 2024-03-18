@@ -3,25 +3,47 @@ import axios from 'axios';
 import { StyleSheet, Text, View, Button } from "react-native";
 import { ListItem, Header } from "react-native-elements";
 import { TouchableOpacity } from "react-native";
+import { initializeApp } from "firebase/app";
+import { getAuth, signOut } from "firebase/auth";
 
+const firebaseConfig = {
+    apiKey: "AIzaSyBaycglekt0PINlf6Zv2KvcGeGRnUOtGJw",
+    authDomain: "banco-dispositivos.firebaseapp.com",
+    projectId: "banco-dispositivos",
+    storageBucket: "banco-dispositivos.appspot.com",
+    messagingSenderId: "396426127659",
+    appId: "1:396426127659:web:fa4fa0e630c308be963d6e",
+    measurementId: "G-TVFDH1LW2J"
+};
 
+//Initialize Firebase
+const app = initializeApp(firebaseConfig);
 
 
 const ContatoScreen = ({ route, navigation }) => {
 
+    const handleLogout = () => {
+        const auth = getAuth();
+        signOut(auth).then(() => {
+            // Sign-out successful.
+        }).catch((error) => {
+            // An error happened.
+        });
+    }
+
     const [getData, setData] = useState([]);
 
-    useEffect(() => {
-        async function resgatarDados() {
-            const result = await axios('http://localhost:3000/contatos');
-            setData(result.data);
-        }
-        resgatarDados();
-    }, []); // Lista de dependências vazia para executar apenas uma vez
+    // useEffect(() => {
+    //     async function resgatarDados() {
+    //         const result = await axios('http://localhost:3000/contatos');
+    //         setData(result.data);
+    //     }
+    //     resgatarDados();
+    // }, []); // Lista de dependências vazia para executar apenas uma vez
 
-    const navigateToEditionScreen = (id) => {
-        navigation.navigate('Edition', { id: id });
-    };
+    // const navigateToEditionScreen = (id) => {
+    //     navigation.navigate('Edition', { id: id });
+    // };
 
     return (
 
@@ -43,6 +65,15 @@ const ContatoScreen = ({ route, navigation }) => {
                             titleStyle={{ color: 'red' }}
 
                         />}
+                    leftComponent={
+                        <Button
+                            title="Log out"
+                            onPress={() => {
+                                handleLogout();
+                                navigation.navigate('Home');
+                            }}
+                        />
+                    }
                 />
 
             </View>
@@ -54,16 +85,16 @@ const ContatoScreen = ({ route, navigation }) => {
             </View>
             <View style={styles.input}>
                 {getData.map((contato) => (
-                        <TouchableOpacity key={contato.id} onPress={() => navigateToEditionScreen(contato.id)}>
-                            <ListItem bottomDivider>
-                                <ListItem.Content>
-                                    <ListItem.Title>{contato.nome}</ListItem.Title>
-                                    <ListItem.Subtitle>{contato.numero}</ListItem.Subtitle>
-                                </ListItem.Content>
-                                <ListItem.Chevron />
-                            </ListItem>
-                        </TouchableOpacity>
-                    ))
+                    <TouchableOpacity key={contato.id} onPress={() => navigateToEditionScreen(contato.id)}>
+                        <ListItem bottomDivider>
+                            <ListItem.Content>
+                                <ListItem.Title>{contato.nome}</ListItem.Title>
+                                <ListItem.Subtitle>{contato.numero}</ListItem.Subtitle>
+                            </ListItem.Content>
+                            <ListItem.Chevron />
+                        </ListItem>
+                    </TouchableOpacity>
+                ))
                 }
             </View>
         </View>

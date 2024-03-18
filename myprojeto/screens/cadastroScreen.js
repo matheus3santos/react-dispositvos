@@ -31,6 +31,7 @@ const CadastroScreen = ({ navigation }) => {
             .then((userCredential) => {
                 // Signed in
                 const user = userCredential.user;
+                console.log('Usuário criado:', user);
                 // ...
             })
             .catch((error) => {

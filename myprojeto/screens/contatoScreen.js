@@ -19,7 +19,7 @@ const firebaseConfig = {
 //Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-
+//Logout
 const ContatoScreen = ({ route, navigation }) => {
 
     const handleLogout = () => {
